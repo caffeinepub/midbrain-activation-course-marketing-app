@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useActor } from './useActor';
-import type { UserProfile, Course, Student, Marketer } from '../backend';
+import type { UserProfile, Course, Student, Marketer, StudentApplication } from '../backend';
 import { Principal } from '@dfinity/principal';
 import { toast } from 'sonner';
 
@@ -188,5 +188,51 @@ export function useUpdateMarketerName() {
     onError: (error: Error) => {
       toast.error(`Failed to update name: ${error.message}`);
     },
+  });
+}
+
+// Student Application Queries
+export function useSubmitStudentApplication() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (application: StudentApplication) => {
+      if (!actor) throw new Error('Actor not available');
+      return actor.submitStudentApplication(application);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['studentApplications'] });
+      toast.success('Application submitted successfully! We will contact you soon.');
+    },
+    onError: (error: Error) => {
+      toast.error(`Failed to submit application: ${error.message}`);
+    },
+  });
+}
+
+export function useGetAllStudentApplications() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<Array<[bigint, StudentApplication]>>({
+    queryKey: ['studentApplications'],
+    queryFn: async () => {
+      if (!actor) return [];
+      return actor.getAllStudentApplications();
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
+export function useGetStudentApplication(applicationId?: bigint) {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<StudentApplication | null>({
+    queryKey: ['studentApplication', applicationId?.toString()],
+    queryFn: async () => {
+      if (!actor || applicationId === undefined) return null;
+      return actor.getStudentApplication(applicationId);
+    },
+    enabled: !!actor && !isFetching && applicationId !== undefined,
   });
 }

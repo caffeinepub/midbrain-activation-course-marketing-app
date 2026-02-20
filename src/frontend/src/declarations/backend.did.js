@@ -23,6 +23,12 @@ export const Marketer = IDL.Record({
   'name' : IDL.Text,
   'referralCount' : IDL.Nat,
 });
+export const StudentApplication = IDL.Record({
+  'contactInfo' : IDL.Text,
+  'courseSelected' : IDL.Text,
+  'name' : IDL.Text,
+  'referredBy' : IDL.Opt(IDL.Text),
+});
 export const Student = IDL.Record({
   'principal' : IDL.Principal,
   'name' : IDL.Text,
@@ -36,6 +42,11 @@ export const idlService = IDL.Service({
   'enrollInCourse' : IDL.Func([IDL.Text], [], []),
   'getAllCourses' : IDL.Func([], [IDL.Vec(Course)], ['query']),
   'getAllMarketers' : IDL.Func([], [IDL.Vec(Marketer)], ['query']),
+  'getAllStudentApplications' : IDL.Func(
+      [],
+      [IDL.Vec(IDL.Tuple(IDL.Nat, StudentApplication))],
+      ['query'],
+    ),
   'getAllStudents' : IDL.Func([], [IDL.Vec(Student)], ['query']),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
@@ -49,6 +60,11 @@ export const idlService = IDL.Service({
       [IDL.Text, IDL.Nat],
       ['query'],
     ),
+  'getStudentApplication' : IDL.Func(
+      [IDL.Nat],
+      [IDL.Opt(StudentApplication)],
+      ['query'],
+    ),
   'getUserProfile' : IDL.Func(
       [IDL.Principal],
       [IDL.Opt(UserProfile)],
@@ -56,6 +72,7 @@ export const idlService = IDL.Service({
     ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'submitStudentApplication' : IDL.Func([StudentApplication], [IDL.Nat], []),
   'trackMarketerReferral' : IDL.Func([], [], []),
   'updateMarketerName' : IDL.Func([IDL.Text], [], []),
   'updateStudentName' : IDL.Func([IDL.Text], [], []),
@@ -79,6 +96,12 @@ export const idlFactory = ({ IDL }) => {
     'name' : IDL.Text,
     'referralCount' : IDL.Nat,
   });
+  const StudentApplication = IDL.Record({
+    'contactInfo' : IDL.Text,
+    'courseSelected' : IDL.Text,
+    'name' : IDL.Text,
+    'referredBy' : IDL.Opt(IDL.Text),
+  });
   const Student = IDL.Record({
     'principal' : IDL.Principal,
     'name' : IDL.Text,
@@ -92,6 +115,11 @@ export const idlFactory = ({ IDL }) => {
     'enrollInCourse' : IDL.Func([IDL.Text], [], []),
     'getAllCourses' : IDL.Func([], [IDL.Vec(Course)], ['query']),
     'getAllMarketers' : IDL.Func([], [IDL.Vec(Marketer)], ['query']),
+    'getAllStudentApplications' : IDL.Func(
+        [],
+        [IDL.Vec(IDL.Tuple(IDL.Nat, StudentApplication))],
+        ['query'],
+      ),
     'getAllStudents' : IDL.Func([], [IDL.Vec(Student)], ['query']),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
@@ -105,6 +133,11 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Text, IDL.Nat],
         ['query'],
       ),
+    'getStudentApplication' : IDL.Func(
+        [IDL.Nat],
+        [IDL.Opt(StudentApplication)],
+        ['query'],
+      ),
     'getUserProfile' : IDL.Func(
         [IDL.Principal],
         [IDL.Opt(UserProfile)],
@@ -112,6 +145,7 @@ export const idlFactory = ({ IDL }) => {
       ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'submitStudentApplication' : IDL.Func([StudentApplication], [IDL.Nat], []),
     'trackMarketerReferral' : IDL.Func([], [], []),
     'updateMarketerName' : IDL.Func([IDL.Text], [], []),
     'updateStudentName' : IDL.Func([IDL.Text], [], []),

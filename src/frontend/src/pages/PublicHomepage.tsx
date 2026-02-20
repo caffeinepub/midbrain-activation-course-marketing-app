@@ -1,8 +1,9 @@
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Loader2, BookOpen, Brain, Sparkles, Target } from 'lucide-react';
+import { Loader2, BookOpen, Brain, Sparkles, Target, Clock } from 'lucide-react';
 import { getCourseImage } from '../utils/courseImages';
+import StudentApplicationForm from '../components/StudentApplicationForm';
 
 export default function PublicHomepage() {
   const { login, loginStatus } = useInternetIdentity();
@@ -12,20 +13,35 @@ export default function PublicHomepage() {
     {
       id: 'basic',
       name: 'Basic Midbrain Activation Course',
-      description: 'Introduction to midbrain activation techniques.',
+      description: 'Introduction to midbrain activation techniques. Duration: 3 Days, 1 hour of online classes daily',
       highlights: ['Foundation concepts', 'Basic exercises', 'Beginner-friendly approach'],
+      duration: '3 Days',
+      dailyHours: '1 hour',
     },
     {
       id: 'advanced',
       name: 'Advanced Midbrain Activation Course',
-      description: 'Advanced concepts and practices in midbrain activation.',
+      description: 'Advanced concepts and practices in midbrain activation. Duration: 15 Days, 1+ hours of online classes daily',
       highlights: ['Deep techniques', 'Advanced practices', 'Enhanced cognitive skills'],
+      duration: '15 Days',
+      dailyHours: '1+ hours',
     },
     {
-      id: 'super',
-      name: 'Super Advanced Intuition Course',
-      description: 'Comprehensive course on developing intuition through midbrain activation.',
-      highlights: ['Master-level training', 'Intuition development', 'Complete transformation'],
+      id: 'institution',
+      name: 'Institution Program',
+      description: 'Course for teachers/founders of educational institutions. Duration: 1 month, 1+ hours of online classes daily.',
+      highlights: ['Professional training', 'Institution management', 'Teacher development'],
+      duration: '1 Month',
+      dailyHours: '1+ hours',
+    },
+    {
+      id: 'meditation',
+      name: 'Meditation Program (18+)',
+      description: 'Course for Adults aged 18+. Duration: 21 Days, 1+ hours of daily meditation.',
+      highlights: ['Adult-focused program', 'Daily meditation practice', 'Mindfulness techniques'],
+      duration: '21 Days',
+      dailyHours: '1+ hours',
+      ageRequirement: '18+',
     },
   ];
 
@@ -120,7 +136,7 @@ export default function PublicHomepage() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
             {courses.map((course) => (
               <Card
                 key={course.id}
@@ -134,30 +150,63 @@ export default function PublicHomepage() {
                   />
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-orange-900 text-xl">{course.name}</CardTitle>
+                  <div className="flex items-start justify-between gap-2">
+                    <CardTitle className="text-orange-900 text-xl">{course.name}</CardTitle>
+                    {course.ageRequirement && (
+                      <span className="text-xs font-semibold bg-orange-100 text-orange-800 px-2 py-1 rounded-full whitespace-nowrap">
+                        {course.ageRequirement}
+                      </span>
+                    )}
+                  </div>
                   <CardDescription className="text-base">{course.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
-                    {course.highlights.map((highlight, index) => (
-                      <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
-                        <BookOpen className="h-4 w-4 text-orange-600 mt-0.5 flex-shrink-0" />
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 text-sm bg-orange-50 p-3 rounded-lg">
+                      <Clock className="h-5 w-5 text-orange-600 flex-shrink-0" />
+                      <div>
+                        <p className="font-semibold text-orange-900">Duration: {course.duration}</p>
+                        <p className="text-gray-600">{course.dailyHours} daily online classes</p>
+                      </div>
+                    </div>
+                    <ul className="space-y-2">
+                      {course.highlights.map((highlight, index) => (
+                        <li key={index} className="flex items-start gap-2 text-sm text-gray-700">
+                          <BookOpen className="h-4 w-4 text-orange-600 mt-0.5 flex-shrink-0" />
+                          <span>{highlight}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </CardContent>
               </Card>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* CTA Section */}
-          <div className="mt-16 text-center">
+      {/* Application Form Section */}
+      <section className="px-4 py-12 bg-gradient-to-br from-orange-50 to-amber-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold text-orange-900 mb-4">Apply for Admission</h3>
+            <p className="text-lg text-gray-700">
+              Fill out the application form below to start your journey with us
+            </p>
+          </div>
+          <StudentApplicationForm />
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-4 py-12 bg-white/50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center">
             <Card className="border-orange-300 bg-gradient-to-br from-orange-100 to-amber-100 max-w-2xl mx-auto">
               <CardHeader>
-                <CardTitle className="text-2xl text-orange-900">Ready to Begin Your Journey?</CardTitle>
+                <CardTitle className="text-2xl text-orange-900">Already Have an Account?</CardTitle>
                 <CardDescription className="text-base text-gray-700">
-                  Login to enroll in courses and start your transformation today
+                  Login to access your enrolled courses and track your progress
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -173,7 +222,7 @@ export default function PublicHomepage() {
                       Logging in...
                     </>
                   ) : (
-                    'Get Started Now'
+                    'Login Now'
                   )}
                 </Button>
               </CardContent>
@@ -204,7 +253,7 @@ export default function PublicHomepage() {
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-orange-600 hover:text-orange-700 underline"
+                className="text-orange-600 hover:text-orange-700 font-medium"
               >
                 caffeine.ai
               </a>

@@ -1,14 +1,37 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-20T02:30:38.892Z",
-  "summary": "REQ-4 has been fully implemented in the diff. The ProfileSetupModal.tsx now includes password validation for the Management role with the exact password '*#Sindoor@2025'. All acceptance criteria are met: password field is conditionally displayed only for Management role, validation prevents profile creation with incorrect password, submit button is disabled when password is invalid, and clear error messages are shown. No missing requirements or hallucinated features detected.",
+  "generatedAt": "2026-02-20T03:14:48.004Z",
+  "summary": "All requirements have been implemented. The meditation course has been added with 18+ age group, all course descriptions updated with duration details, and the meditation course has a unique image assigned. Frontend displays duration information consistently across all views.",
   "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.95,
+  "hallucinated_features": [
+    {
+      "description": "Migration module (backend/migration.mo) implementing data migration logic",
+      "reason": "BuildRequest does not specify the need for a migration system or migration module. This appears to be an implementation detail added beyond the requirements.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "The meditation course has a 21-day duration instead of any specific duration mentioned in requirements",
+      "reason": "REQ-1 does not specify the duration for the meditation course. The implementation chose 21 days, which was not requested.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo",
+        "frontend/src/pages/PublicHomepage.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.92,
   "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/ProfileSetupModal.tsx",
+    "frontend/src/components/CourseList.tsx",
+    "frontend/src/components/EnrolledCourses.tsx",
+    "frontend/src/pages/PublicHomepage.tsx",
+    "frontend/src/utils/courseImages.ts",
     "project_state.json"
   ]
 }

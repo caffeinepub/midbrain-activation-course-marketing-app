@@ -1,43 +1,125 @@
 {
   "kind": "build_request",
-  "title": "Add password-protected management login",
+  "title": "Add meditation course and update course descriptions with duration details",
   "projectName": "Midbrain Academy",
   "priority": "normal",
   "requirements": [
     {
+      "id": "REQ-1",
+      "text": "Add a new meditation course with age group 18+ to the course catalog",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "Isme 1 course or add kar do mediation course jo age group 18 + k liye ho"
+        ]
+      },
+      "acceptanceCriteria": [
+        "New meditation course is available in the course list",
+        "Course has age requirement of 18+ displayed",
+        "Course can be enrolled in by eligible students"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Update Basic Midbrain Activation course description to include duration: 3 days, 1 hour online classes daily",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "Basic Midbrain activation course duration 3 day - 1 hourse online classes daily"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Course description clearly shows 3-day duration",
+        "Course description indicates 1 hour daily online classes"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Update Advance Midbrain Activation course description to include duration: 15 days, 1+ hours online classes daily",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "2nd course advance Midbrain activation course Duration 15 day 1 hours + online classes daily"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Course description clearly shows 15-day duration",
+        "Course description indicates 1+ hours daily online classes"
+      ]
+    },
+    {
       "id": "REQ-4",
-      "text": "Add password validation for Management role login. When a user selects the Management role during profile setup, require them to enter the password '*#Sindoor@2025'. Do not allow Management profile creation if the password is incorrect.",
+      "text": "Update Institution course description to include duration: 1 month, 1+ hours online classes daily",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ],
+        "quotes": [
+          "3rd intitution course Duration 1 month + 1 Hours+ online classes daily"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Course description clearly shows 1-month duration",
+        "Course description indicates 1+ hours daily online classes"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Display updated course descriptions with duration details on all frontend course views including public homepage, course list, and student dashboard",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-latest"
         ],
         "quotes": [
-          "Yadi management login kare to key password mein *#Sindoor@2025  k bina login nahi ho"
+          "Sath mein sabhi course k discription mein details dalna hai"
         ]
       },
       "acceptanceCriteria": [
-        "ProfileSetupModal displays a password input field when Management role is selected",
-        "Password field is not shown for Student or Marketer roles",
-        "Submit button is disabled or shows error if password does not exactly match '*#Sindoor@2025'",
-        "Management users cannot complete profile setup without correct password",
-        "Error message clearly indicates incorrect password when validation fails"
+        "Course duration and daily class hours are visible in course cards",
+        "Updated descriptions appear on public homepage course highlights",
+        "Course details are shown in student dashboard available courses tab"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Assign a unique image for the new meditation course and display it consistently across all course views",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-latest"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Meditation course displays with its own distinctive image",
+        "Image appears in course list, student dashboard, and public homepage"
       ]
     }
   ],
   "constraints": [
-    "Do not change the backend schema or add password storage to the backend",
-    "Password validation must happen only in the frontend during profile setup",
-    "Do not modify the Internet Identity authentication flow"
+    "Maintain existing course structure and enrollment system",
+    "Preserve existing student application form functionality",
+    "Keep all existing courses (Basic, Advance, Super/Institution) intact"
   ],
   "nonGoals": [
-    "Backend password storage or verification",
-    "Password hashing or encryption",
-    "Password recovery mechanism",
-    "Role-based access control beyond profile setup"
+    "WhatsApp integration features",
+    "Student fee tracking and due payment functionality",
+    "Payment processing system"
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "Serene meditation scene with person in lotus position, warm lighting and peaceful atmosphere for meditation course (meditation-course.dim_800x600.png)"
+    ],
     "edits": []
   }
 }

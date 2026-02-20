@@ -5,7 +5,9 @@ import Runtime "mo:core/Runtime";
 import Iter "mo:core/Iter";
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
+import Migration "migration";
 
+(with migration = Migration.run)
 actor {
   // Initialize Access Control System
   let accessControlState = AccessControl.initState();
@@ -42,6 +44,18 @@ actor {
     role : Text; // "Student", "Management", or "Marketer"
   };
 
+  // Student Application Entry
+  public type StudentApplication = {
+    name : Text;
+    contactInfo : Text;
+    courseSelected : Text;
+    referredBy : ?Text;
+  };
+
+  let studentApplications : Map.Map<Nat, StudentApplication> = Map.empty<Nat, StudentApplication>();
+
+  var nextApplicationId = 0;
+
   // Predefined courses
   let courses : Map.Map<Text, Course> = Map.fromIter<Text, Course>(
     [
@@ -50,7 +64,7 @@ actor {
         {
           id = "basic";
           name = "Basic Midbrain Activation Course";
-          description = "Introduction to midbrain activation techniques.";
+          description = "Introduction to midbrain activation techniques. Duration: 3 Days, 1 hour of online classes daily";
         },
       ),
       (
@@ -58,7 +72,7 @@ actor {
         {
           id = "advanced";
           name = "Advanced Midbrain Activation Course";
-          description = "Advanced concepts and practices in midbrain activation.";
+          description = "Advanced concepts and practices in midbrain activation. Duration: 15 Days, 1+ hours of online classes daily";
         },
       ),
       (
@@ -69,6 +83,23 @@ actor {
           description = "Comprehensive course on developing intuition through midbrain activation.";
         },
       ),
+      (
+        "institution",
+        {
+          id = "institution";
+          name = "Institution Program";
+          description = "Course for teachers/founders of educational institutions. Duration: 1 month, 1+ hours of online classes daily.";
+        },
+      ),
+      // New course for 18+
+      (
+        "meditation",
+        {
+          id = "meditation";
+          name = "Meditation Program (18+)";
+          description = "Course for Adults aged 18+. Duration: 21 Days, 1+ hours of daily meditation.";
+        },
+      ),
     ].values(),
   );
 
@@ -76,6 +107,32 @@ actor {
   let students = Map.empty<Principal, Student>();
   let marketers = Map.empty<Principal, Marketer>();
   let userProfiles = Map.empty<Principal, UserProfile>();
+
+  //------------------ Student Application Submission ------------------
+
+  public shared ({ caller }) func submitStudentApplication(application : StudentApplication) : async Nat {
+    // No authentication required for public form submission
+    let applicationId = nextApplicationId;
+    studentApplications.add(applicationId, application);
+    nextApplicationId += 1;
+    applicationId;
+  };
+
+  public query ({ caller }) func getAllStudentApplications() : async [(Nat, StudentApplication)] {
+    // Only admins can view submitted applications
+    if (not (AccessControl.isAdmin(accessControlState, caller))) {
+      Runtime.trap("Unauthorized: Only management can view student applications");
+    };
+    studentApplications.entries().toArray();
+  };
+
+  public query ({ caller }) func getStudentApplication(applicationId : Nat) : async ?StudentApplication {
+    // Only admins can view individual applications
+    if (not (AccessControl.isAdmin(accessControlState, caller))) {
+      Runtime.trap("Unauthorized: Only management can view student applications");
+    };
+    studentApplications.get(applicationId);
+  };
 
   //------------------ User Profile Management ------------------
 
@@ -182,10 +239,7 @@ actor {
   //------------------ Management Section ------------------
 
   public query ({ caller }) func getAllCourses() : async [Course] {
-    // All authenticated users can view available courses
-    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
-      Runtime.trap("Unauthorized: Only authenticated users can view courses");
-    };
+    // Public access - anyone including guests can view the course catalog
     courses.values().toArray();
   };
 

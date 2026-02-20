@@ -25,6 +25,12 @@ export interface Student {
   'name' : string,
   'enrolledCourses' : Array<string>,
 }
+export interface StudentApplication {
+  'contactInfo' : string,
+  'courseSelected' : string,
+  'name' : string,
+  'referredBy' : [] | [string],
+}
 export interface UserProfile { 'name' : string, 'role' : string }
 export type UserRole = { 'admin' : null } |
   { 'user' : null } |
@@ -35,14 +41,20 @@ export interface _SERVICE {
   'enrollInCourse' : ActorMethod<[string], undefined>,
   'getAllCourses' : ActorMethod<[], Array<Course>>,
   'getAllMarketers' : ActorMethod<[], Array<Marketer>>,
+  'getAllStudentApplications' : ActorMethod<
+    [],
+    Array<[bigint, StudentApplication]>
+  >,
   'getAllStudents' : ActorMethod<[], Array<Student>>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getEnrolledCourses' : ActorMethod<[Principal], Array<Course>>,
   'getMarketerStats' : ActorMethod<[Principal], [string, bigint]>,
+  'getStudentApplication' : ActorMethod<[bigint], [] | [StudentApplication]>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'submitStudentApplication' : ActorMethod<[StudentApplication], bigint>,
   'trackMarketerReferral' : ActorMethod<[], undefined>,
   'updateMarketerName' : ActorMethod<[string], undefined>,
   'updateStudentName' : ActorMethod<[string], undefined>,

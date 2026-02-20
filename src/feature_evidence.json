@@ -2,10 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-password-validation-for-management-role-login-when-a-user-selects-the-management-role-during-profile-setup-require-them-to-enter-the-password-sindoor-2025-do-not-allow-management-profile-creation-if-the-password-is-incorrect",
-      "featureTitle": "Add password validation for Management role login. When a user selects the Management role during profile setup, require them to enter the password '*#Sindoor@2025'. Do not allow Management profile creation if the password is incorrect.",
+      "featureId": "feature-display-updated-course-descriptions-with-duration-details-on-all-frontend-course-views-including-public-homepage-course-list-and-student-dashboard",
+      "featureTitle": "Display updated course descriptions with duration details on all frontend course views including public homepage, course list, and student dashboard",
       "files": [
-        "frontend/src/components/ProfileSetupModal.tsx"
+        "frontend/src/components/CourseList.tsx",
+        "frontend/src/components/EnrolledCourses.tsx",
+        "frontend/src/pages/PublicHomepage.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -16,7 +18,29 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-4"
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-assign-a-unique-image-for-the-new-meditation-course-and-display-it-consistently-across-all-course-views",
+      "featureTitle": "Assign a unique image for the new meditation course and display it consistently across all course views",
+      "files": [
+        "frontend/src/components/CourseList.tsx",
+        "frontend/src/components/EnrolledCourses.tsx",
+        "frontend/src/pages/PublicHomepage.tsx",
+        "frontend/src/utils/courseImages.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
       ],
       "confidence": "high"
     }

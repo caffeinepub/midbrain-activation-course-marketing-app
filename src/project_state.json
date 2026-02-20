@@ -1,18 +1,29 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Course platform with authentication requirements",
+  "summary": "Education/training website offering midbrain activation courses with student application form",
   "architectural_notes": [
-    "Management authentication system with specific password requirement"
+    "Course catalog with multiple age-appropriate offerings",
+    "Student application form for enrollment",
+    "Course details include duration and daily class hours"
   ],
   "known_issues": [],
   "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Serene meditation scene with person in lotus position, warm lighting and peaceful atmosphere for meditation course (meditation-course.dim_800x600.png)",
   "existing_features": [
     {
-      "id": "feature-add-password-validation-for-management-role-login-when-a-user-selects-the-management-role-during-profile-setup-require-them-to-enter-the-password-sindoor-2025-do-not-allow-management-profile-creation-if-the-password-is-incorrect",
-      "title": "Add password validation for Management role login. When a user selects the Management role during profile setup, require them to enter the password '*#Sindoor@2025'. Do not allow Management profile creation if the password is incorrect.",
+      "id": "feature-display-updated-course-descriptions-with-duration-details-on-all-frontend-course-views-including-public-homepage-course-list-and-student-dashboard",
+      "title": "Display updated course descriptions with duration details on all frontend course views including public homepage, course list, and student dashboard",
       "reqIds": [
-        "REQ-4"
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-assign-a-unique-image-for-the-new-meditation-course-and-display-it-consistently-across-all-course-views",
+      "title": "Assign a unique image for the new meditation course and display it consistently across all course views",
+      "reqIds": [
+        "REQ-6"
       ],
       "version": 1
     }
@@ -20,8 +31,46 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add management login with password validation requiring '*#Sindoor@2025'",
+      "summary": "Add meditation course for 18+ age group",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add detailed descriptions to all courses (Basic: 3 days/1hr daily, Advance: 15 days/1hr+ daily, Institution: 1 month/1hr+ daily)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add a new meditation course with age group 18+ to the course catalog",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Update Basic Midbrain Activation course description to include duration: 3 days, 1 hour online classes daily",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Update Advance Midbrain Activation course description to include duration: 15 days, 1+ hours online classes daily",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Update Institution course description to include duration: 1 month, 1+ hours online classes daily",
+      "reqIds": [
+        "REQ-4"
+      ],
       "status": "pending"
     }
   ],

@@ -1,16 +1,18 @@
-import { useGetAllCourses, useGetAllStudents, useGetAllMarketers } from '../hooks/useQueries';
+import { useGetAllCourses, useGetAllStudents, useGetAllMarketers, useGetAllStudentApplications } from '../hooks/useQueries';
 import CourseManagement from '../components/CourseManagement';
 import StudentList from '../components/StudentList';
 import AllMarketersView from '../components/AllMarketersView';
 import EnrollmentAnalytics from '../components/EnrollmentAnalytics';
+import StudentApplicationsView from '../components/StudentApplicationsView';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { BookOpen, Users, TrendingUp, Target } from 'lucide-react';
+import { BookOpen, Users, TrendingUp, Target, FileText } from 'lucide-react';
 import { Skeleton } from '../components/ui/skeleton';
 
 export default function ManagementDashboard() {
   const { data: courses, isLoading: coursesLoading } = useGetAllCourses();
   const { data: students, isLoading: studentsLoading } = useGetAllStudents();
   const { data: marketers, isLoading: marketersLoading } = useGetAllMarketers();
+  const { data: applications, isLoading: applicationsLoading } = useGetAllStudentApplications();
 
   const totalEnrollments = students?.reduce((sum, student) => sum + student.enrolledCourses.length, 0) || 0;
   const totalReferrals = marketers?.reduce((sum, marketer) => sum + Number(marketer.referralCount), 0) || 0;
@@ -22,7 +24,7 @@ export default function ManagementDashboard() {
         <p className="text-gray-600">Oversee courses, students, and marketing performance</p>
       </div>
 
-      <div className="mb-6 grid gap-4 md:grid-cols-4">
+      <div className="mb-6 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
         <div className="rounded-xl border border-orange-200 bg-white p-6 shadow-sm">
           <div className="flex items-center gap-3">
             <div className="rounded-full bg-orange-100 p-3">
@@ -86,14 +88,31 @@ export default function ManagementDashboard() {
             </div>
           </div>
         </div>
+
+        <div className="rounded-xl border border-orange-200 bg-white p-6 shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="rounded-full bg-amber-100 p-3">
+              <FileText className="h-6 w-6 text-amber-600" />
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Applications</p>
+              {applicationsLoading ? (
+                <Skeleton className="h-8 w-12" />
+              ) : (
+                <p className="text-2xl font-bold text-amber-900">{applications?.length || 0}</p>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       <Tabs defaultValue="analytics" className="w-full">
-        <TabsList className="grid w-full max-w-2xl grid-cols-4">
+        <TabsList className="grid w-full max-w-3xl grid-cols-5">
           <TabsTrigger value="analytics">Analytics</TabsTrigger>
           <TabsTrigger value="courses">Courses</TabsTrigger>
           <TabsTrigger value="students">Students</TabsTrigger>
           <TabsTrigger value="marketers">Marketers</TabsTrigger>
+          <TabsTrigger value="applications">Applications</TabsTrigger>
         </TabsList>
         <TabsContent value="analytics" className="mt-6">
           <EnrollmentAnalytics />
@@ -106,6 +125,9 @@ export default function ManagementDashboard() {
         </TabsContent>
         <TabsContent value="marketers" className="mt-6">
           <AllMarketersView />
+        </TabsContent>
+        <TabsContent value="applications" className="mt-6">
+          <StudentApplicationsView />
         </TabsContent>
       </Tabs>
     </div>

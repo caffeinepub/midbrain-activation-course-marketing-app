@@ -1,23 +1,66 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add password-protected management login",
+  "title": "Add meditation course and update course descriptions with duration details",
   "requirements": [
     {
-      "id": "REQ-4",
-      "summary": "Add password validation for Management role login during profile setup",
+      "id": "REQ-5",
+      "summary": "Display updated course descriptions with duration details on all frontend course views including public homepage, course list, and student dashboard",
       "acceptanceCriteria": [
-        "ProfileSetupModal displays a password input field when Management role is selected",
-        "Password field is not shown for Student or Marketer roles",
-        "Submit button is disabled or shows error if password does not exactly match '*#Sindoor@2025'",
-        "Management users cannot complete profile setup without correct password",
-        "Error message clearly indicates incorrect password when validation fails"
+        "Course duration and daily class hours are visible in course cards",
+        "Updated descriptions appear on public homepage course highlights",
+        "Course details are shown in student dashboard available courses tab"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/ProfileSetupModal.tsx",
+          "path": "frontend/src/pages/PublicHomepage.tsx",
           "operation": "modify",
-          "description": "Add password input field that appears only when Management role is selected. Implement frontend validation to check if entered password exactly matches '*#Sindoor@2025'. Disable submit button or show error message when password is incorrect for Management role. Ensure password field is hidden for Student and Marketer roles. Add clear error messaging when password validation fails."
+          "description": "Update course highlight sections to display duration details (3 days/1 hour daily for Basic, 15 days/1+ hours daily for Advance, 1 month/1+ hours daily for Institution) in the course description text for each course card"
+        },
+        {
+          "path": "frontend/src/components/CourseList.tsx",
+          "operation": "modify",
+          "description": "Enhance course card display to show duration and daily class hours information prominently alongside existing course descriptions, ensuring the information is retrieved from backend course descriptions"
+        },
+        {
+          "path": "frontend/src/components/EnrolledCourses.tsx",
+          "operation": "modify",
+          "description": "Update enrolled course cards to display duration and daily class hours from course descriptions, maintaining consistent formatting with CourseList component"
+        },
+        {
+          "path": "frontend/src/pages/StudentDashboard.tsx",
+          "operation": "modify",
+          "description": "Ensure the Available Courses tab displays duration details by confirming CourseList component integration properly renders updated course information"
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Assign a unique image for the new meditation course and display it consistently across all course views",
+      "acceptanceCriteria": [
+        "Meditation course displays with its own distinctive image",
+        "Image appears in course list, student dashboard, and public homepage"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/utils/courseImages.ts",
+          "operation": "modify",
+          "description": "Add mapping for meditation course ID to the generated image at frontend/public/assets/generated/meditation-course.dim_800x600.png, ensuring the courseImages utility function returns this path when the meditation course is requested"
+        },
+        {
+          "path": "frontend/src/pages/PublicHomepage.tsx",
+          "operation": "modify",
+          "description": "Add a new course highlight section for the meditation course (18+ age group) with the meditation course image from frontend/public/assets/generated/meditation-course.dim_800x600.png, positioned alongside existing Basic, Advance, and Institution course highlights"
+        },
+        {
+          "path": "frontend/src/components/CourseList.tsx",
+          "operation": "modify",
+          "description": "Verify courseImages utility is used to fetch images for all courses including the new meditation course, ensuring frontend/public/assets/generated/meditation-course.dim_800x600.png displays correctly in the course grid"
+        },
+        {
+          "path": "frontend/src/components/EnrolledCourses.tsx",
+          "operation": "modify",
+          "description": "Ensure enrolled courses display uses courseImages utility to show the meditation course image frontend/public/assets/generated/meditation-course.dim_800x600.png when students are enrolled in the meditation course"
         }
       ]
     }

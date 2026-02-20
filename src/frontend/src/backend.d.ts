@@ -17,6 +17,12 @@ export interface Course {
     name: string;
     description: string;
 }
+export interface StudentApplication {
+    contactInfo: string;
+    courseSelected: string;
+    name: string;
+    referredBy?: string;
+}
 export interface UserProfile {
     name: string;
     role: string;
@@ -36,14 +42,17 @@ export interface backendInterface {
     enrollInCourse(courseId: string): Promise<void>;
     getAllCourses(): Promise<Array<Course>>;
     getAllMarketers(): Promise<Array<Marketer>>;
+    getAllStudentApplications(): Promise<Array<[bigint, StudentApplication]>>;
     getAllStudents(): Promise<Array<Student>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getEnrolledCourses(studentPrincipal: Principal): Promise<Array<Course>>;
     getMarketerStats(marketerPrincipal: Principal): Promise<[string, bigint]>;
+    getStudentApplication(applicationId: bigint): Promise<StudentApplication | null>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
+    submitStudentApplication(application: StudentApplication): Promise<bigint>;
     trackMarketerReferral(): Promise<void>;
     updateMarketerName(newName: string): Promise<void>;
     updateStudentName(newName: string): Promise<void>;

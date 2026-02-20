@@ -2,8 +2,9 @@ import { useGetAllCourses, useGetEnrolledCourses } from '../hooks/useQueries';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import CourseList from '../components/CourseList';
 import EnrolledCourses from '../components/EnrolledCourses';
+import StudentApplicationForm from '../components/StudentApplicationForm';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs';
-import { BookOpen, GraduationCap } from 'lucide-react';
+import { BookOpen, GraduationCap, FileText } from 'lucide-react';
 import { Skeleton } from '../components/ui/skeleton';
 
 export default function StudentDashboard() {
@@ -71,15 +72,19 @@ export default function StudentDashboard() {
       </div>
 
       <Tabs defaultValue="enrolled" className="w-full">
-        <TabsList className="grid w-full max-w-md grid-cols-2">
+        <TabsList className="grid w-full max-w-2xl grid-cols-3">
           <TabsTrigger value="enrolled">My Courses</TabsTrigger>
           <TabsTrigger value="available">Available Courses</TabsTrigger>
+          <TabsTrigger value="application">Application Form</TabsTrigger>
         </TabsList>
         <TabsContent value="enrolled" className="mt-6">
           <EnrolledCourses />
         </TabsContent>
         <TabsContent value="available" className="mt-6">
           <CourseList />
+        </TabsContent>
+        <TabsContent value="application" className="mt-6">
+          <StudentApplicationForm />
         </TabsContent>
       </Tabs>
     </div>
