@@ -1,0 +1,81 @@
+{
+  "kind": "build_request",
+  "title": "Add management team info, WhatsApp contact, and course images",
+  "projectName": "Midbrain Activation",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Display management team names 'Aruna Mahajan' and 'Mahesh Gujrati' in the footer section of the application",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-11"
+        ],
+        "quotes": [
+          "isme management ka name Aruna mahajan, Mahesh Gujrati rakhna hai"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Management team names appear in the footer",
+        "Names are displayed as 'Aruna Mahajan' and 'Mahesh Gujrati'",
+        "Footer section is visible on all pages"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add WhatsApp contact number 7330202733 in a 'Contact Us' section in the footer",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-11"
+        ],
+        "quotes": [
+          "contact us mein whatsapp number 7330202733 rakhna hai"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Contact Us section displays WhatsApp number 7330202733",
+        "Number is formatted for easy readability",
+        "Contact information is accessible on all pages via footer"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add unique images for each of the three courses (Basic Intuition, Advanced Intuition, Super Advanced Intuition) and display them in the course cards",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-11"
+        ],
+        "quotes": [
+          "sabhi course mein alag alag image dal dena"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Each course has a distinct, visually appealing image",
+        "Images are displayed in course cards on CourseList and EnrolledCourses components",
+        "Images match the theme and level of each course (Basic, Advanced, Super Advanced)",
+        "Images are properly sized and responsive"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use existing course structure with three levels: Basic, Advanced, and Super Advanced Intuition",
+    "Maintain the current warm educational color palette (orange/amber theme)",
+    "Footer must be visible across all role-based dashboards (Student, Management, Marketer)"
+  ],
+  "nonGoals": [
+    "Creating new courses beyond the existing three",
+    "Adding interactive WhatsApp integration or chat functionality",
+    "Modifying the backend course data structure"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Educational brain activation illustration with basic geometric patterns for Basic Intuition course (basic-intuition.dim_400x300.png)",
+      "Advanced brain illustration with neural networks and energy patterns for Advanced Intuition course (advanced-intuition.dim_400x300.png)",
+      "Sophisticated brain visualization with cosmic elements and advanced neural pathways for Super Advanced Intuition course (super-advanced-intuition.dim_400x300.png)"
+    ],
+    "edits": []
+  }
+}

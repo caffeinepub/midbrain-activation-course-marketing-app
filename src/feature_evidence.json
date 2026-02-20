@@ -1,0 +1,64 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-display-management-team-names-aruna-mahajan-and-mahesh-gujrati-in-the-footer-section-of-the-application",
+      "featureTitle": "Display management team names 'Aruna Mahajan' and 'Mahesh Gujrati' in the footer section of the application",
+      "files": [
+        "frontend/src/components/RoleBasedLayout.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-whatsapp-contact-number-7330202733-in-a-contact-us-section-in-the-footer",
+      "featureTitle": "Add WhatsApp contact number 7330202733 in a 'Contact Us' section in the footer",
+      "files": [
+        "frontend/src/components/RoleBasedLayout.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-unique-images-for-each-of-the-three-courses-basic-intuition-advanced-intuition-super-advanced-intuition-and-display-them-in-the-course-cards",
+      "featureTitle": "Add unique images for each of the three courses (Basic Intuition, Advanced Intuition, Super Advanced Intuition) and display them in the course cards",
+      "files": [
+        "frontend/src/components/CourseList.tsx",
+        "frontend/src/components/EnrolledCourses.tsx",
+        "frontend/src/utils/courseImages.ts"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

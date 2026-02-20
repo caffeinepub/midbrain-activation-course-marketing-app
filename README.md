@@ -1,2 +1,3 @@
-# midbrain-activation-course-marketing-app
-Exported from Caffeine project: Midbrain Activation Course Marketing App
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`
