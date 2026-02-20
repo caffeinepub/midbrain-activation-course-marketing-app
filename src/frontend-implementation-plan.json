@@ -1,66 +1,50 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add meditation course and update course descriptions with duration details",
+  "title": "Remove Institutional Course",
   "requirements": [
     {
-      "id": "REQ-5",
-      "summary": "Display updated course descriptions with duration details on all frontend course views including public homepage, course list, and student dashboard",
+      "id": "REQ-3",
+      "summary": "Remove the 'institution' course image mapping from the courseImages utility function",
       "acceptanceCriteria": [
-        "Course duration and daily class hours are visible in course cards",
-        "Updated descriptions appear on public homepage course highlights",
-        "Course details are shown in student dashboard available courses tab"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/PublicHomepage.tsx",
-          "operation": "modify",
-          "description": "Update course highlight sections to display duration details (3 days/1 hour daily for Basic, 15 days/1+ hours daily for Advance, 1 month/1+ hours daily for Institution) in the course description text for each course card"
-        },
-        {
-          "path": "frontend/src/components/CourseList.tsx",
-          "operation": "modify",
-          "description": "Enhance course card display to show duration and daily class hours information prominently alongside existing course descriptions, ensuring the information is retrieved from backend course descriptions"
-        },
-        {
-          "path": "frontend/src/components/EnrolledCourses.tsx",
-          "operation": "modify",
-          "description": "Update enrolled course cards to display duration and daily class hours from course descriptions, maintaining consistent formatting with CourseList component"
-        },
-        {
-          "path": "frontend/src/pages/StudentDashboard.tsx",
-          "operation": "modify",
-          "description": "Ensure the Available Courses tab displays duration details by confirming CourseList component integration properly renders updated course information"
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Assign a unique image for the new meditation course and display it consistently across all course views",
-      "acceptanceCriteria": [
-        "Meditation course displays with its own distinctive image",
-        "Image appears in course list, student dashboard, and public homepage"
+        "The courseImages.ts utility no longer includes a mapping for the 'institution' course ID"
       ],
       "file_operations": [
         {
           "path": "frontend/src/utils/courseImages.ts",
           "operation": "modify",
-          "description": "Add mapping for meditation course ID to the generated image at frontend/public/assets/generated/meditation-course.dim_800x600.png, ensuring the courseImages utility function returns this path when the meditation course is requested"
-        },
+          "description": "Remove the 'institution' case from the courseImages function. The function currently maps course IDs (basic, advanced, super, institution, meditation) to image paths. Delete the institution mapping entry so only basic, advanced, super, and meditation remain."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Verify that the institutional course no longer appears in any course listings on the public homepage, student dashboard, or management views",
+      "acceptanceCriteria": [
+        "The institutional course does not appear in the available courses list",
+        "The institutional course does not appear in enrolled courses",
+        "The institutional course is not available for selection in the student application form"
+      ],
+      "file_operations": [
         {
           "path": "frontend/src/pages/PublicHomepage.tsx",
           "operation": "modify",
-          "description": "Add a new course highlight section for the meditation course (18+ age group) with the meditation course image from frontend/public/assets/generated/meditation-course.dim_800x600.png, positioned alongside existing Basic, Advance, and Institution course highlights"
+          "description": "Review the public homepage to ensure it dynamically fetches courses from the backend via getAllCourses query hook. Since the backend will no longer return the institutional course, verify that the CourseList or course display logic does not hardcode the institutional course. No changes should be needed if the component already uses the backend data source."
         },
         {
-          "path": "frontend/src/components/CourseList.tsx",
+          "path": "frontend/src/pages/StudentDashboard.tsx",
           "operation": "modify",
-          "description": "Verify courseImages utility is used to fetch images for all courses including the new meditation course, ensuring frontend/public/assets/generated/meditation-course.dim_800x600.png displays correctly in the course grid"
+          "description": "Review the student dashboard to ensure enrolled courses and available courses tabs fetch data dynamically from backend hooks (getEnrolledCourses, getAllCourses). Verify that no hardcoded institutional course references exist. No changes should be needed if the component already uses the backend data source."
         },
         {
-          "path": "frontend/src/components/EnrolledCourses.tsx",
+          "path": "frontend/src/components/StudentApplicationForm.tsx",
           "operation": "modify",
-          "description": "Ensure enrolled courses display uses courseImages utility to show the meditation course image frontend/public/assets/generated/meditation-course.dim_800x600.png when students are enrolled in the meditation course"
+          "description": "Review the student application form to ensure the course selection dropdown populates from the getAllCourses backend query hook. Verify that the institutional course option will not appear once removed from the backend. Confirm no hardcoded institutional course option exists in the form."
+        },
+        {
+          "path": "frontend/src/components/CourseManagement.tsx",
+          "operation": "modify",
+          "description": "Review the course management admin view to ensure it fetches courses dynamically via getAllCourses query hook and that the institutional course will no longer appear in the management table once removed from the backend. Verify no hardcoded institutional course references exist."
         }
       ]
     }

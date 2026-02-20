@@ -1,35 +1,23 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-20T03:14:48.004Z",
-  "summary": "All requirements have been implemented. The meditation course has been added with 18+ age group, all course descriptions updated with duration details, and the meditation course has a unique image assigned. Frontend displays duration information consistently across all views.",
+  "generatedAt": "2026-02-20T03:22:47.138Z",
+  "summary": "All requirements from the BuildRequest have been successfully implemented. The 'institution' course has been removed from the backend courses map, migration module, and frontend course image utility. The course no longer appears in any listings as evidenced by the modified PublicHomepage showing only basic, advanced, and meditation courses.",
   "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "Migration module (backend/migration.mo) implementing data migration logic",
-      "reason": "BuildRequest does not specify the need for a migration system or migration module. This appears to be an implementation detail added beyond the requirements.",
+      "description": "Migration module with runtime course filtering functionality",
+      "reason": "The BuildRequest specified updating the migration module to remove the 'institution' course from course definitions, but did not request the creation of a new migration.mo file with runtime filtering logic. The requirement was to update an existing migration module, not create a new one with a run() function that filters courses at runtime.",
       "evidence": [
-        "backend/migration.mo",
-        "backend/main.mo"
-      ]
-    },
-    {
-      "description": "The meditation course has a 21-day duration instead of any specific duration mentioned in requirements",
-      "reason": "REQ-1 does not specify the duration for the meditation course. The implementation chose 21 days, which was not requested.",
-      "evidence": [
-        "backend/migration.mo",
-        "backend/main.mo",
-        "frontend/src/pages/PublicHomepage.tsx"
+        "backend/migration.mo"
       ]
     }
   ],
-  "confidence": 0.92,
+  "confidence": 0.85,
   "changed_files": [
     "backend/main.mo",
     "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/CourseList.tsx",
-    "frontend/src/components/EnrolledCourses.tsx",
     "frontend/src/pages/PublicHomepage.tsx",
     "frontend/src/utils/courseImages.ts",
     "project_state.json"

@@ -2,33 +2,9 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-display-updated-course-descriptions-with-duration-details-on-all-frontend-course-views-including-public-homepage-course-list-and-student-dashboard",
-      "featureTitle": "Display updated course descriptions with duration details on all frontend course views including public homepage, course list, and student dashboard",
+      "featureId": "feature-remove-the-institution-course-image-mapping-from-the-courseimages-utility-function",
+      "featureTitle": "Remove the 'institution' course image mapping from the courseImages utility function",
       "files": [
-        "frontend/src/components/CourseList.tsx",
-        "frontend/src/components/EnrolledCourses.tsx",
-        "frontend/src/pages/PublicHomepage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-assign-a-unique-image-for-the-new-meditation-course-and-display-it-consistently-across-all-course-views",
-      "featureTitle": "Assign a unique image for the new meditation course and display it consistently across all course views",
-      "files": [
-        "frontend/src/components/CourseList.tsx",
-        "frontend/src/components/EnrolledCourses.tsx",
-        "frontend/src/pages/PublicHomepage.tsx",
         "frontend/src/utils/courseImages.ts"
       ],
       "components": [
@@ -40,7 +16,26 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-6"
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-verify-that-the-institutional-course-no-longer-appears-in-any-course-listings-on-the-public-homepage-student-dashboard-or-management-views",
+      "featureTitle": "Verify that the institutional course no longer appears in any course listings on the public homepage, student dashboard, or management views",
+      "files": [
+        "frontend/src/pages/PublicHomepage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
       ],
       "confidence": "high"
     }

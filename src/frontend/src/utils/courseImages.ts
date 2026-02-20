@@ -4,7 +4,6 @@ export const getCourseImage = (courseId: string): string => {
     basic: '/assets/generated/basic-intuition.dim_400x300.png',
     advanced: '/assets/generated/advanced-intuition.dim_400x300.png',
     super: '/assets/generated/super-advanced-intuition.dim_400x300.png',
-    institution: '/assets/generated/super-advanced-intuition.dim_400x300.png',
     meditation: '/assets/generated/meditation-course.dim_800x600.png',
   };
 

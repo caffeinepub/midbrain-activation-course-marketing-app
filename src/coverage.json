@@ -1,74 +1,52 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-20T03:14:48.007Z",
+  "generatedAt": "2026-02-20T03:22:47.140Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 6,
+    "total": 4,
     "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Add a new meditation course with age group 18+ to the course catalog",
+        "summary": "Remove the 'institution' course from the predefined courses list in the backend main actor",
         "status": "unknown",
         "plannedFiles": [],
         "matchedFiles": []
       },
       {
         "id": "REQ-2",
-        "summary": "Update Basic Midbrain Activation course description to include duration: 3 days, 1 hour online classes daily",
+        "summary": "Update the migration module to remove the 'institution' course from the courses map",
         "status": "unknown",
         "plannedFiles": [],
         "matchedFiles": []
       },
       {
         "id": "REQ-3",
-        "summary": "Update Advance Midbrain Activation course description to include duration: 15 days, 1+ hours online classes daily",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Update Institution course description to include duration: 1 month, 1+ hours online classes daily",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Display updated course descriptions with duration details on all frontend course views including public homepage, course list, and student dashboard",
+        "summary": "Remove the 'institution' course image mapping from the courseImages utility function",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/PublicHomepage.tsx",
-          "frontend/src/components/CourseList.tsx",
-          "frontend/src/components/EnrolledCourses.tsx",
-          "frontend/src/pages/StudentDashboard.tsx"
+          "frontend/src/utils/courseImages.ts"
         ],
         "matchedFiles": [
-          "frontend/src/pages/PublicHomepage.tsx",
-          "frontend/src/components/CourseList.tsx",
-          "frontend/src/components/EnrolledCourses.tsx"
+          "frontend/src/utils/courseImages.ts"
         ]
       },
       {
-        "id": "REQ-6",
-        "summary": "Assign a unique image for the new meditation course and display it consistently across all course views",
+        "id": "REQ-4",
+        "summary": "Verify that the institutional course no longer appears in any course listings on the public homepage, student dashboard, or management views",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/utils/courseImages.ts",
           "frontend/src/pages/PublicHomepage.tsx",
-          "frontend/src/components/CourseList.tsx",
-          "frontend/src/components/EnrolledCourses.tsx"
+          "frontend/src/pages/StudentDashboard.tsx",
+          "frontend/src/components/StudentApplicationForm.tsx",
+          "frontend/src/components/CourseManagement.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/utils/courseImages.ts",
-          "frontend/src/pages/PublicHomepage.tsx",
-          "frontend/src/components/CourseList.tsx",
-          "frontend/src/components/EnrolledCourses.tsx"
+          "frontend/src/pages/PublicHomepage.tsx"
         ]
       }
     ]
@@ -80,9 +58,6 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/meditation-course.dim_800x600.png",
-    "frontend/src/components/CourseList.tsx",
-    "frontend/src/components/EnrolledCourses.tsx",
     "frontend/src/pages/PublicHomepage.tsx",
     "frontend/src/utils/courseImages.ts",
     "project_state.json",

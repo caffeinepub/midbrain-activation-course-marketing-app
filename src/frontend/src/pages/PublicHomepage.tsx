@@ -27,14 +27,6 @@ export default function PublicHomepage() {
       dailyHours: '1+ hours',
     },
     {
-      id: 'institution',
-      name: 'Institution Program',
-      description: 'Course for teachers/founders of educational institutions. Duration: 1 month, 1+ hours of online classes daily.',
-      highlights: ['Professional training', 'Institution management', 'Teacher development'],
-      duration: '1 Month',
-      dailyHours: '1+ hours',
-    },
-    {
       id: 'meditation',
       name: 'Meditation Program (18+)',
       description: 'Course for Adults aged 18+. Duration: 21 Days, 1+ hours of daily meditation.',
@@ -136,7 +128,7 @@ export default function PublicHomepage() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {courses.map((course) => (
               <Card
                 key={course.id}

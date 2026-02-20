@@ -1,125 +1,88 @@
 {
   "kind": "build_request",
-  "title": "Add meditation course and update course descriptions with duration details",
-  "projectName": "Midbrain Academy",
+  "title": "Remove Institutional Course",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add a new meditation course with age group 18+ to the course catalog",
+      "text": "Remove the 'institution' course from the predefined courses list in the backend main actor",
       "target": "backend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-user-latest"
         ],
         "quotes": [
-          "Isme 1 course or add kar do mediation course jo age group 18 + k liye ho"
+          "Institutional course ko remove kar do"
         ]
       },
       "acceptanceCriteria": [
-        "New meditation course is available in the course list",
-        "Course has age requirement of 18+ displayed",
-        "Course can be enrolled in by eligible students"
+        "The 'institution' course is no longer present in the backend courses map",
+        "The course cannot be enrolled in or displayed anywhere in the application"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Update Basic Midbrain Activation course description to include duration: 3 days, 1 hour online classes daily",
+      "text": "Update the migration module to remove the 'institution' course from the courses map",
       "target": "backend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-user-latest"
         ],
         "quotes": [
-          "Basic Midbrain activation course duration 3 day - 1 hourse online classes daily"
+          "Institutional course ko remove kar do"
         ]
       },
       "acceptanceCriteria": [
-        "Course description clearly shows 3-day duration",
-        "Course description indicates 1 hour daily online classes"
+        "The migration.mo file no longer includes the 'institution' course in its course definitions"
       ]
     },
     {
       "id": "REQ-3",
-      "text": "Update Advance Midbrain Activation course description to include duration: 15 days, 1+ hours online classes daily",
-      "target": "backend",
+      "text": "Remove the 'institution' course image mapping from the courseImages utility function",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-user-latest"
         ],
         "quotes": [
-          "2nd course advance Midbrain activation course Duration 15 day 1 hours + online classes daily"
+          "Institutional course ko remove kar do"
         ]
       },
       "acceptanceCriteria": [
-        "Course description clearly shows 15-day duration",
-        "Course description indicates 1+ hours daily online classes"
+        "The courseImages.ts utility no longer includes a mapping for the 'institution' course ID"
       ]
     },
     {
       "id": "REQ-4",
-      "text": "Update Institution course description to include duration: 1 month, 1+ hours online classes daily",
-      "target": "backend",
+      "text": "Verify that the institutional course no longer appears in any course listings on the public homepage, student dashboard, or management views",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-latest"
+          "msg-user-latest"
         ],
         "quotes": [
-          "3rd intitution course Duration 1 month + 1 Hours+ online classes daily"
+          "Institutional course ko remove kar do"
         ]
       },
       "acceptanceCriteria": [
-        "Course description clearly shows 1-month duration",
-        "Course description indicates 1+ hours daily online classes"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Display updated course descriptions with duration details on all frontend course views including public homepage, course list, and student dashboard",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ],
-        "quotes": [
-          "Sath mein sabhi course k discription mein details dalna hai"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Course duration and daily class hours are visible in course cards",
-        "Updated descriptions appear on public homepage course highlights",
-        "Course details are shown in student dashboard available courses tab"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Assign a unique image for the new meditation course and display it consistently across all course views",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-latest"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Meditation course displays with its own distinctive image",
-        "Image appears in course list, student dashboard, and public homepage"
+        "The institutional course does not appear in the available courses list",
+        "The institutional course does not appear in enrolled courses",
+        "The institutional course is not available for selection in the student application form"
       ]
     }
   ],
   "constraints": [
-    "Maintain existing course structure and enrollment system",
-    "Preserve existing student application form functionality",
-    "Keep all existing courses (Basic, Advance, Super/Institution) intact"
+    "Preserve all other existing courses (basic, advanced, super, meditation)",
+    "Do not modify the course data structure or enrollment logic",
+    "Maintain backward compatibility for existing student enrollments in other courses"
   ],
   "nonGoals": [
-    "WhatsApp integration features",
-    "Student fee tracking and due payment functionality",
-    "Payment processing system"
+    "Adding new courses",
+    "Modifying course descriptions or details",
+    "Changing the course management UI"
   ],
   "imageRequirements": {
-    "required": [
-      "Serene meditation scene with person in lotus position, warm lighting and peaceful atmosphere for meditation course (meditation-course.dim_800x600.png)"
-    ],
+    "required": [],
     "edits": []
   }
 }

@@ -83,14 +83,7 @@ actor {
           description = "Comprehensive course on developing intuition through midbrain activation.";
         },
       ),
-      (
-        "institution",
-        {
-          id = "institution";
-          name = "Institution Program";
-          description = "Course for teachers/founders of educational institutions. Duration: 1 month, 1+ hours of online classes daily.";
-        },
-      ),
+      // "institution" course removed here
       // New course for 18+
       (
         "meditation",
