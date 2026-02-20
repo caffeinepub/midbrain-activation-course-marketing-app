@@ -1,81 +1,43 @@
 {
   "kind": "build_request",
-  "title": "Add management team info, WhatsApp contact, and course images",
-  "projectName": "Midbrain Activation",
+  "title": "Add password-protected management login",
+  "projectName": "Midbrain Academy",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Display management team names 'Aruna Mahajan' and 'Mahesh Gujrati' in the footer section of the application",
+      "id": "REQ-4",
+      "text": "Add password validation for Management role login. When a user selects the Management role during profile setup, require them to enter the password '*#Sindoor@2025'. Do not allow Management profile creation if the password is incorrect.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-11"
+          "msg-latest"
         ],
         "quotes": [
-          "isme management ka name Aruna mahajan, Mahesh Gujrati rakhna hai"
+          "Yadi management login kare to key password mein *#Sindoor@2025  k bina login nahi ho"
         ]
       },
       "acceptanceCriteria": [
-        "Management team names appear in the footer",
-        "Names are displayed as 'Aruna Mahajan' and 'Mahesh Gujrati'",
-        "Footer section is visible on all pages"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Add WhatsApp contact number 7330202733 in a 'Contact Us' section in the footer",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-11"
-        ],
-        "quotes": [
-          "contact us mein whatsapp number 7330202733 rakhna hai"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Contact Us section displays WhatsApp number 7330202733",
-        "Number is formatted for easy readability",
-        "Contact information is accessible on all pages via footer"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Add unique images for each of the three courses (Basic Intuition, Advanced Intuition, Super Advanced Intuition) and display them in the course cards",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-11"
-        ],
-        "quotes": [
-          "sabhi course mein alag alag image dal dena"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Each course has a distinct, visually appealing image",
-        "Images are displayed in course cards on CourseList and EnrolledCourses components",
-        "Images match the theme and level of each course (Basic, Advanced, Super Advanced)",
-        "Images are properly sized and responsive"
+        "ProfileSetupModal displays a password input field when Management role is selected",
+        "Password field is not shown for Student or Marketer roles",
+        "Submit button is disabled or shows error if password does not exactly match '*#Sindoor@2025'",
+        "Management users cannot complete profile setup without correct password",
+        "Error message clearly indicates incorrect password when validation fails"
       ]
     }
   ],
   "constraints": [
-    "Use existing course structure with three levels: Basic, Advanced, and Super Advanced Intuition",
-    "Maintain the current warm educational color palette (orange/amber theme)",
-    "Footer must be visible across all role-based dashboards (Student, Management, Marketer)"
+    "Do not change the backend schema or add password storage to the backend",
+    "Password validation must happen only in the frontend during profile setup",
+    "Do not modify the Internet Identity authentication flow"
   ],
   "nonGoals": [
-    "Creating new courses beyond the existing three",
-    "Adding interactive WhatsApp integration or chat functionality",
-    "Modifying the backend course data structure"
+    "Backend password storage or verification",
+    "Password hashing or encryption",
+    "Password recovery mechanism",
+    "Role-based access control beyond profile setup"
   ],
   "imageRequirements": {
-    "required": [
-      "Educational brain activation illustration with basic geometric patterns for Basic Intuition course (basic-intuition.dim_400x300.png)",
-      "Advanced brain illustration with neural networks and energy patterns for Advanced Intuition course (advanced-intuition.dim_400x300.png)",
-      "Sophisticated brain visualization with cosmic elements and advanced neural pathways for Super Advanced Intuition course (super-advanced-intuition.dim_400x300.png)"
-    ],
+    "required": [],
     "edits": []
   }
 }

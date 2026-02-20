@@ -1,11 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Add management team information and WhatsApp contact to the footer, and display unique images for each of the three midbrain activation courses.
+**Goal:** Add password-protected login for Management role during profile setup.
 
 **Planned changes:**
-- Display management team names "Aruna Mahajan" and "Mahesh Gujrati" in the footer
-- Add WhatsApp contact number 7330202733 in a "Contact Us" section in the footer
-- Add distinct images for each course (Basic Intuition, Advanced Intuition, Super Advanced Intuition) in course cards
+- Add password input field in ProfileSetupModal when Management role is selected
+- Validate password matches '*#Sindoor@2025' before allowing profile creation
+- Display error message for incorrect password
+- Prevent Management profile creation without correct password
 
-**User-visible outcome:** Users can see management team information and WhatsApp contact in the footer on all pages, and each course displays a unique, visually appealing image that matches its level.
+**User-visible outcome:** Users selecting the Management role during profile setup must enter the correct password '*#Sindoor@2025' to complete their profile. Student and Marketer roles remain unchanged and do not require a password.

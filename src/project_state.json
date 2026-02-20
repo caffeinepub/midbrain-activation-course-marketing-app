@@ -1,33 +1,18 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Midbrain Activation course marketing app with management team (Aruna Mahajan, Mahesh Gujrati), WhatsApp contact (7330202733), and course-specific images",
-  "architectural_notes": [],
+  "summary": "Course platform with authentication requirements",
+  "architectural_notes": [
+    "Management authentication system with specific password requirement"
+  ],
   "known_issues": [],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Educational brain activation illustration with basic geometric patterns for Basic Intuition course (basic-intuition.dim_400x300.png)\n- Advanced brain illustration with neural networks and energy patterns for Advanced Intuition course (advanced-intuition.dim_400x300.png)\n- Sophisticated brain visualization with cosmic elements and advanced neural pathways for Super Advanced Intuition course (super-advanced-intuition.dim_400x300.png)",
   "existing_features": [
     {
-      "id": "feature-display-management-team-names-aruna-mahajan-and-mahesh-gujrati-in-the-footer-section-of-the-application",
-      "title": "Display management team names 'Aruna Mahajan' and 'Mahesh Gujrati' in the footer section of the application",
+      "id": "feature-add-password-validation-for-management-role-login-when-a-user-selects-the-management-role-during-profile-setup-require-them-to-enter-the-password-sindoor-2025-do-not-allow-management-profile-creation-if-the-password-is-incorrect",
+      "title": "Add password validation for Management role login. When a user selects the Management role during profile setup, require them to enter the password '*#Sindoor@2025'. Do not allow Management profile creation if the password is incorrect.",
       "reqIds": [
-        "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-whatsapp-contact-number-7330202733-in-a-contact-us-section-in-the-footer",
-      "title": "Add WhatsApp contact number 7330202733 in a 'Contact Us' section in the footer",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-unique-images-for-each-of-the-three-courses-basic-intuition-advanced-intuition-super-advanced-intuition-and-display-them-in-the-course-cards",
-      "title": "Add unique images for each of the three courses (Basic Intuition, Advanced Intuition, Super Advanced Intuition) and display them in the course cards",
-      "reqIds": [
-        "REQ-3"
+        "REQ-4"
       ],
       "version": 1
     }
@@ -35,24 +20,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add management team names: Aruna Mahajan and Mahesh Gujrati",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Add WhatsApp contact number 7330202733 in contact section",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Add unique images for each course (Basic, Advanced, Super Advanced)",
+      "summary": "Add management login with password validation requiring '*#Sindoor@2025'",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Midbrain Activation Course Marketing App",
+  "projectName": "Midbrain Academy",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

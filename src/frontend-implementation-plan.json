@@ -1,64 +1,23 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add management team info, WhatsApp contact, and course images",
+  "title": "Add password-protected management login",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Display management team names in the footer section",
+      "id": "REQ-4",
+      "summary": "Add password validation for Management role login during profile setup",
       "acceptanceCriteria": [
-        "Management team names appear in the footer",
-        "Names are displayed as 'Aruna Mahajan' and 'Mahesh Gujrati'",
-        "Footer section is visible on all pages"
+        "ProfileSetupModal displays a password input field when Management role is selected",
+        "Password field is not shown for Student or Marketer roles",
+        "Submit button is disabled or shows error if password does not exactly match '*#Sindoor@2025'",
+        "Management users cannot complete profile setup without correct password",
+        "Error message clearly indicates incorrect password when validation fails"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/RoleBasedLayout.tsx",
+          "path": "frontend/src/components/ProfileSetupModal.tsx",
           "operation": "modify",
-          "description": "Add management team section to the existing footer. Include 'Management Team:' label followed by 'Aruna Mahajan' and 'Mahesh Gujrati' names. Style consistently with the warm educational theme and ensure visibility across all role-based dashboards."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Add WhatsApp contact number in footer Contact Us section",
-      "acceptanceCriteria": [
-        "Contact Us section displays WhatsApp number 7330202733",
-        "Number is formatted for easy readability",
-        "Contact information is accessible on all pages via footer"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/RoleBasedLayout.tsx",
-          "operation": "modify",
-          "description": "Add Contact Us section to the footer with WhatsApp number 7330202733. Format the number for readability (e.g., +91 733 020 2733 or similar). Include appropriate icon or label for WhatsApp contact. Ensure consistent styling with footer theme."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Add unique images for each course and display them in course cards",
-      "acceptanceCriteria": [
-        "Each course has a distinct, visually appealing image",
-        "Images are displayed in course cards on CourseList and EnrolledCourses components",
-        "Images match the theme and level of each course (Basic, Advanced, Super Advanced)",
-        "Images are properly sized and responsive"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/CourseList.tsx",
-          "operation": "modify",
-          "description": "Add course images to the course card display. Map course IDs to generated image assets: use frontend/public/assets/generated/basic-intuition.dim_400x300.png for Basic Intuition course, frontend/public/assets/generated/advanced-intuition.dim_400x300.png for Advanced Intuition course, and frontend/public/assets/generated/super-advanced-intuition.dim_400x300.png for Super Advanced Intuition course. Add image element above or beside course title with proper responsive sizing and aspect ratio preservation."
-        },
-        {
-          "path": "frontend/src/components/EnrolledCourses.tsx",
-          "operation": "modify",
-          "description": "Add course images to enrolled course cards using the same mapping as CourseList: frontend/public/assets/generated/basic-intuition.dim_400x300.png for Basic Intuition, frontend/public/assets/generated/advanced-intuition.dim_400x300.png for Advanced Intuition, and frontend/public/assets/generated/super-advanced-intuition.dim_400x300.png for Super Advanced Intuition. Ensure consistent card layout with CourseList component including responsive image sizing."
-        },
-        {
-          "path": "frontend/src/utils/courseImages.ts",
-          "operation": "create",
-          "description": "Create utility module that maps course IDs or names to their corresponding image paths. Export a function or constant object that returns the correct workspace path (frontend/public/assets/generated/<filename>.dim_400x300.png) for each course: Basic Intuition, Advanced Intuition, and Super Advanced Intuition. This centralizes image path logic for reuse across CourseList and EnrolledCourses components."
+          "description": "Add password input field that appears only when Management role is selected. Implement frontend validation to check if entered password exactly matches '*#Sindoor@2025'. Disable submit button or show error message when password is incorrect for Management role. Ensure password field is hidden for Student and Marketer roles. Add clear error messaging when password validation fails."
         }
       ]
     }
